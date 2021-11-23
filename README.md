@@ -32,7 +32,7 @@ Die folgende Grafik zeigt den groben Ablauf des ETL Workflows:
 
 Zuerst wird eine komprimierte Datei mit mehreren CSV Dateien von MTGJSON.com heruntergeladen.
 
-![mtgjson](./assets/images/mtgjson.png)
+![mtgjson](./assets/images/mtgjson.PNG)
 
 Das Download Userinterface der Seite lässt sich umgehen, indem man die direkte [API URI](https://mtgjson.com/api/v5/AllPrintingsCSVFiles.tar.gz) herausfindet und angibt. Sie sieht wie folgt aus: `https://mtgjson.com/api/v5/AllPrintingsCSVFiles.tar.gz`. Die heruntergeladene Datei wird entpackt und die darin enthaltene `cards.csv` wird im HDFS gespeichert. Danach ließt PySpark die Datei ein und *cleaned* die Daten. Die finale CSV Datei wird wieder im HDFS abgelegt. Ein Hive Table wird angelegt und die Daten werden schließlich in eine MySQL Datenbank kopiert. Mit einem simplen Back- und Frontend werden die Karten visualisiert.
 
