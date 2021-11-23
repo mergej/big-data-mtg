@@ -32,7 +32,7 @@ Die folgende Grafik zeigt den groben Ablauf des ETL Workflows:
 
 Zuerst wird eine komprimierte Datei mit mehreren CSV Dateien von MTGJSON.com heruntergeladen.
 
-![mtgjson](.\assets\images\mtgjson.PNG)
+![mtgjson](./assets/images/mtgjson.png)
 
 Das Download Userinterface der Seite lässt sich umgehen, indem man die direkte [API URI](https://mtgjson.com/api/v5/AllPrintingsCSVFiles.tar.gz) herausfindet und angibt. Sie sieht wie folgt aus: `https://mtgjson.com/api/v5/AllPrintingsCSVFiles.tar.gz`. Die heruntergeladene Datei wird entpackt und die darin enthaltene `cards.csv` wird im HDFS gespeichert. Danach ließt PySpark die Datei ein und *cleaned* die Daten. Die finale CSV Datei wird wieder im HDFS abgelegt. Ein Hive Table wird angelegt und die Daten werden schließlich in eine MySQL Datenbank kopiert. Mit einem simplen Back- und Frontend werden die Karten visualisiert.
 
@@ -40,7 +40,7 @@ Das Download Userinterface der Seite lässt sich umgehen, indem man die direkte 
 
 Die Graphview gibt einen schnellen Überblick über alle Tasks und zeigt mit einer farblichen Umrandung ihren Status an.
 
-![whole_graph_view](assets/images/graph.PNG)
+![whole_graph_view](./assets/images/graph.png)
 
 Die Tasks haben folgende Aufgaben:
 
@@ -67,7 +67,7 @@ remove_local_dir | Löscht das lokale Verzeichnis `/home/airflow/mtg/data`
 
 Zusätzlich zur Graphview stellt Airflow die Abhängigkeiten der Tasks in einer Treeview dar:
 
-![tree](.\assets\images\tree.png)
+![tree](./assets/images/tree.png)
 
 Es lässt sich ablesen, welche Tasks paralellisiert ablaufen können und welche Tasks von bestimmten Vorgängern abhängig sind. Beispielsweise lassen sie die ersten beiden Tasks `create_hive_connection` und `create_mysql_connection` simultan ausführen. Der nächste Task `create_local_dirs` startet erst dann, wenn beide Verbindungen hergestellt sind. Diese Abhängigkeiten innerhalb der Reihenfolge lassen sich im DAG einfach definieren:
 
