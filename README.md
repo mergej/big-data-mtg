@@ -26,7 +26,7 @@ Voraussetzung:
 
 Die folgende Grafik zeigt den groben Ablauf des ETL Workflows:
 
-![workflow](.\assets\images\workflow.png)
+![workflow](./assets/images/workflow.png)
 
 
 

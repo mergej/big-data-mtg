@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+  spark:
+    image: marcelmittelstaedt/spark_base:latest
+    container_name: hadoop
+    ports:
+      - 8088:8088 
+      - 9870:9870 
+      - 9864:9864 
+      - 10000:10000
+      - 8032:8032 
+      - 8030:8030 
+      - 8031:8031 
+      - 9000:9000 
+      - 8888:8888
+      - 4040:4040
+
+  airflow:
+    build:
+      context: ./airflow/
+      dockerfile: Dockerfile
+    container_name: airflow
+    volumes:
+      - ./airflow/src:/home/airflow/airflow/dags/
+    ports:
+      - 8080:8080
+
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+      - 49153:49153
+    container_name: frontend
+    volumes:
+      - ./frontend:/src/app
+      - /frontend/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    container_name: backend
+    restart: always
+    volumes:
+      - ./backend:/src
+      - /backend/node_modules
+
+volumes:
+  data:
+    driver: local
