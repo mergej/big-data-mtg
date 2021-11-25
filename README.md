@@ -98,6 +98,10 @@ hive_to_mysql >> delete_mysql_connection
 hive_to_mysql >> remove_local_dir
 ```
 
+### Known Issues
+
+Der PySpark Cleansing Vorgang hat Probleme mit der Kodierung mancher Zeichen in der CSV. Trotz `encoding="UTF-8"` und anderen Versuchen, treten Ersetzungszeichen (�) in machen Karteneinträgen in der Datenbank auf.
+
 ### Backend
 
 Ein Express.js Backend wird verwendet, um die Daten aus der Datenbank zu lesen und in Form einer REST API bereitzustellen. Unter `http://localhost:4000` stellt das Backend folgende Routen zur Verfügung:
