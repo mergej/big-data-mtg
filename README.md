@@ -59,7 +59,7 @@ create_HiveTable_mtg_cards | Erstellt den Hive Table `mtg_cards`.
 addPartition_HiveTable_mtg_cards | Fügt die Daten der finalen CSV Datei im HDFS in den Hive Table ein und fügt die Partition (year, month, day) ein.
 create_remote_mysql_table | Legt den `mtg_cards` Table in der MySQL Datenbank an. Hierbei wird erstmals die anfangs erstellte MySQL Connection verwendet.
 truncate_remote_mysql_table | Leert den `mtg_cards` Table in der MySQL Datenbank an.
-hive_to_mysql | Transferiert die Daten aus dem Hive Table in den MySQL Table. Die Daten werden kopiert und der Hive Table bleibt erhalten.
+hive_to_mysql | Transferiert die Daten aus dem Hive Table in den MySQL Table. Die Daten werden kopiert und der Hive Table bleibt erhalten. **WICHTIG:** Aktuell wird hier im Code ( `mtg_final.py`, Operator: `hive_to_mysql`, Zeile: `298` ) limitiert, wie viele Karten aus dem Hive Table in die MySQL Datenbank gelangen. Das Frontend kann dank Pagination problemlos alle Karten anzeigen. Jedoch besitzt das Suchfeld eine Autocomplete Komponente, welche auf ein ValueChange Event hört und aktuell noch keine Pagination besitzt.
 delete_hive_connection | Löscht die anfangs angelegte Hive Connection.
 delete_mysql_connection | Löscht die anfangs angelegte MySQL Connection.
 remove_local_dir | Löscht das lokale Verzeichnis `/home/airflow/mtg/data`
