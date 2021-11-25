@@ -210,7 +210,7 @@ LOCATION '/user/hadoop/mtg/final/pyspark_mtg_cards.csv';
 
 drop_HiveTable_mtg_cards = HiveOperator(
     task_id='drop_mtg_cards_table',
-    hql='DROP TABLE default.mtg_cards',
+    hql='DROP TABLE IF EXISTS default.mtg_cards',
     hive_cli_conn_id='beeline',
     dag=dag,
 )
@@ -292,9 +292,10 @@ truncate_remote_mysql_table = MySqlOperator(
 # Hive to MySQL
 # -------------------------------------------------
 
+#
 hive_to_mysql = HiveToMySqlTransfer(
     task_id='hive_to_mysql',
-    sql="SELECT * FROM mtg_cards WHERE id <= 10000",
+    sql="SELECT * FROM mtg_cards WHERE id <= 1000",
     hiveserver2_conn_id='hiveserver2_connection_big_data',
     mysql_table='mtg_cards_jakob',
     mysql_conn_id='mysql_connection_big_data',

@@ -121,6 +121,28 @@ Das Backend steht nicht im Fokus der Aufgabe und es wird auf jegliche Validierun
 
 Zur Visualisierung der Karten wird ein Angular Frontend verwendet. Es ist erreichbar unter `http://localhost:80`.
 
-
 ## Setup
 
+Um das Projekt auszuführen werden 2 Docker bereitgestellt. Die erste `docker-compose.yaml` führt den ETL Workflow aus. Es wird ein hadoop und ein airflow Container gestartet. Die zweite `docker-compose.yaml` startet das Back- und Frontend. Logischerweise kann das Frontend erst Daten anzeigen, wenn der ETL Workflow erfolgreich abgeschlossen ist und sich somit Daten in der Datenbank befinden.
+
+### Airflow
+Folgende Schritte müssen ausgeführt werden:
+
+  - GitHub [Repository](https://github.com/mergej/big-data-mtg) clonen
+  - `docker compose build` ausführen
+  - `docker compose up` ausführen
+  - Warten bis beide Container erfolgreich gestartet sind
+  - Die Bash des hadoop Containers aufrufen: `docker exec -it hadoop bash` und die folgenden Befehle ausführen:
+    - `sudo su hadoop`
+    - `stop-all.sh` und anschließend `start-all.sh`
+    - `hiveserver2`
+  - `http://localhost:8080/admin` aufrufen und den DAG `MTG_CSV` starten
+
+### Backend & Frontend
+Folgende Schritte müssen ausgeführt werden:
+
+  - GitHub [Repository](https://github.com/mergej/mtg-webpage) clonen
+  - `docker compose build` ausführen
+  - `docker compose up` ausführen
+  - Warten bis das Frontend vollständig gebaut ist
+  - Frontend erreichbar über `http://localhost:80`
