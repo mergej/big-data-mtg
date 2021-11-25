@@ -20,7 +20,6 @@ Es gibt viele Internetseiten, die MTG Daten in unterschiedlichen Formaten anbiet
 Voraussetzung:
 
 - Implementierung mit einem ETL Workflow Tool (hier: Airflow)
-- Automatische Ausführung
 
 ## Umsetzung
 
@@ -135,7 +134,7 @@ Folgende Schritte müssen ausgeführt werden:
   - Die Bash des hadoop Containers aufrufen: `docker exec -it hadoop bash` und die folgenden Befehle ausführen:
     - `sudo su hadoop`
     - `stop-all.sh` und anschließend `start-all.sh`
-    - `hiveserver2`
+    - `hiveserver2` und warten bis mindestens drei Hive Session ID's angezeigt werden
   - `http://localhost:8080/admin` aufrufen und den DAG `MTG_CSV` starten
 
 ### Backend & Frontend
