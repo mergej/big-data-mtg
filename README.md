@@ -131,7 +131,7 @@ Um das Projekt auszuführen werden 2 Docker bereitgestellt. Die erste `docker-co
 ### Airflow
 Folgende Schritte müssen ausgeführt werden:
 
-  - GitHub [Repository](https://github.com/mergej/big-data-mtg) clonen
+  - GitHub [Repository](https://github.com/mergej/big-data-mtg) herunterladen / forken
   - `docker compose build` ausführen
   - `docker compose up` ausführen
   - Warten bis beide Container erfolgreich gestartet sind
@@ -144,7 +144,7 @@ Folgende Schritte müssen ausgeführt werden:
 ### Backend & Frontend
 Folgende Schritte müssen ausgeführt werden:
 
-  - GitHub [Repository](https://github.com/mergej/mtg-webpage) clonen
+  - GitHub [Repository](https://github.com/mergej/mtg-webpage) herunterladen / forken
   - `docker compose build` ausführen
   - `docker compose up` ausführen
   - Warten bis das Frontend vollständig gebaut ist
